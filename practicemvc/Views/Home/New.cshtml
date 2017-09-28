@@ -1,0 +1,44 @@
+﻿
+
+@model practicemvc.Models.NewDataViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New</h2>
+
+@using (Html.BeginForm("Save", "dbases"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.dbase.Name)
+        @Html.TextBoxFor(m => m.dbase.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.dbase.Birthdate)
+        @Html.TextBoxFor(m => m.dbase.Birthdate, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>
+            @Html.CheckBoxFor(m => m.dbase.IsSubscribedToNewsLetter) Subscribed to news letter
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            @Html.LabelFor(m => m.dbase.MembershipTypeId)
+            @Html.DropDownListFor(m => m.dbase.MembershipTypeId, new SelectList(Model.MemberTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        </label>
+    </div>
+    <div class="form-group">
+         <input type="submit" value="Submit" class="btn btn-default" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="All Students" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("/Index") + "'" );" />
+    </div>
+}
+
+
+
+
+
